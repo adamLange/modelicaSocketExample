@@ -6,13 +6,14 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
-#define SOCK_PATH "echo_socket"
+#define SOCK_PATH "rpcSocket"
 
 int main(void)
 {
     int s, t, len;
     struct sockaddr_un remote;
     char str[100];
+    double arr[100];
 
     if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
         perror("socket");
@@ -31,6 +32,7 @@ int main(void)
 
     printf("Connected.\n");
 
+    /*
     while(printf("> "), fgets(str, 100, stdin), !feof(stdin)) {
         if (send(s, str, strlen(str), 0) == -1) {
             perror("send");
@@ -45,6 +47,20 @@ int main(void)
             else printf("Server closed connection\n");
             exit(1);
         }
+    }
+    */
+
+    printf("Recieving\n");
+    if ((t=recv(s, arr, sizeof(double)*100, 0)) > 0) {
+        printf("recieved %i bytes\n",t);
+        for (int i = 0; i<100; i++){
+          printf("%10.5f\n",arr[i]);
+        }
+        //printf("echo> %s", str);
+    } else {
+        if (t <0) perror("recv");
+        else printf("Server closed connection\n");
+        exit(1);
     }
 
     close(s);
