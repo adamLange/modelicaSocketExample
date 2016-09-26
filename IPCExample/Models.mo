@@ -2,7 +2,7 @@ within IPCExample;
 
 package Models
 block RemoteAverager
-  IPCExample.ConnectionObjects.SocketConnection con = IPCExample.ConnectionObjects.SocketConnection("/home/adam/projects/modelicaIPCExamples/rpcSocket"); annotation(Placement(visible = true, transformation(origin = {-70, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  IPCExample.ConnectionObjects.SocketConnection con = IPCExample.ConnectionObjects.SocketConnection("_projectDir_/rpcSocket"); annotation(Placement(visible = true, transformation(origin = {-70, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {-190, 52}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(visible = true, transformation(origin = {194, 2}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {106, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput u1 annotation(Placement(visible = true, transformation(origin = {-176, -30}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));

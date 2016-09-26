@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
-#define SOCK_PATH "/home/adam/projects/modelicaIPCExamples/rpcSocket"
+#define SOCK_PATH "_projectDir_/rpcSocket"
 
 typedef struct {
   struct sockaddr_un* address;
@@ -17,7 +17,7 @@ void* initSocketConnection(const char* socketName)
 {
 
   FILE *fid;
-  if ((fid = fopen("/home/adam/projects/modelicaIPCExamples/log","a")) <= 0){
+  if ((fid = fopen("_projectDir_/log","a")) <= 0){
     perror("open log file");
     exit(1);
   }
@@ -66,7 +66,7 @@ double getAverage(void* object,double a,double b){
   int n;
   FILE *fid;
 
-  if ((fid = fopen("/home/adam/projects/modelicaIPCExamples/log","a")) <= 0){
+  if ((fid = fopen("_projectDir_/log","a")) <= 0){
     perror("open log file");
     exit(1);
   }

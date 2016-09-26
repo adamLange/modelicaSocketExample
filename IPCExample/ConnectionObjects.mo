@@ -6,7 +6,7 @@ package ConnectionObjects
     extends ExternalObject;
 
     function constructor
-      input String socName = "/home/adam/projects/modelicaIPCExamples/rpcSocket";
+      input String socName = "_projectDir_/rpcSocket";
       output SocketConnection connection;
       external "C" connection = initSocketConnection(socName)
         annotation(Library="socketclient",
