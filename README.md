@@ -1,12 +1,21 @@
-To run the model remoteAveragingExample.mo, you will need to compile
-socketClient.c into a shared object library named libsocketclient.so 
-and save it in the modelicaIPCExamples/IPCExample/ExternalLibraries
+This is a simple example of using IPC with a modelic function.
 
-First start the server:
+To run the example, first run the script init.sh:
 
-    $python server.py -m; rm rpcSocket
+    $./init.sh
 
-Then run the remoteAveragingExample.
+Running init.sh will substitute hard coded paths in where necessary
+and compile socketClient.c into a shared library that will be linked
+to the modelica model.
 
-Watch out.  There are some hardcoded paths that could cause you trouble
-at this point.
+Next, start the python server.  The server waits on a unix socket 
+to recieve two double values.  It then averages them and sends back
+the result.  Super exciting ehay?  Start there server with this
+command:
+
+    modelicaIPCExamples$python server.py -m;rm rpcSocket
+
+Start the Open Modelica Editor and load the package IPCExample by
+navigating to modelicaIPCExamples/IPCExample/package.mo.  Open
+the model remoteAveragingExample and run it.  (You can also do this 
+if you make a mos file)
