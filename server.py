@@ -18,27 +18,21 @@ s1 = socket.socket(socket.AF_UNIX)
 s1.bind('rpcSocket')
 s1.listen(5)
 
-okay = True
 acceptFlag = True
 
-"""
 while acceptFlag:
   s2,s2info = s1.accept()
+  okay = True
   while okay:
     try:
-      operands = json.loads(s2.recv(1024))
+      operands = np.frombuffer(s2.recv(1024),dtype="double")
       ave = average(operands[0],operands[1])
-      s2.sendall(json.dumps(ave))
+      s2.sendall(np.array([ave],dtype="double").tostring())
     except:
       okay = False
       s2.close()
   acceptFlag = args.multiConn
-"""
 
-s2,s2info = s1.accept()
-arr = np.array([5.5,10.10,15.15,20.20,7.07],dtype='double')
-s2.sendall(arr.tostring())
-s2.recv(1024)
 
 s1.close()
 s2.close()

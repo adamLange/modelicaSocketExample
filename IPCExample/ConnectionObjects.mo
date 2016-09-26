@@ -6,14 +6,18 @@ package ConnectionObjects
     extends ExternalObject;
 
     function constructor
-      input String keyFile = "";
+      input String socName = "/home/adam/projects/modelicaIPCExamples/rpcSocket";
       output SocketConnection connection;
-      external "C" connection = initSocketConnection(keyFile);
+      external "C" connection = initSocketConnection(socName)
+        annotation(Library="socketclient",
+          LibraryDirectory="modelica://IPCExample/ExternalLibraries");
     end constructor;
 
     function destructor "close connection"
       input SocketConnection connection;
-      external "C" closeSocketConnection(connection);
+      external "C" closeSocketConnection(connection)
+        annotation(Library="socketclient",
+          LibraryDirectory="modelica://IPCExample/ExternalLibraries");
     end destructor;
 
   end SocketConnection;
